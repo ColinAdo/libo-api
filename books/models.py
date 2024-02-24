@@ -22,7 +22,7 @@ class Book(models.Model):
     cover_image = models.ImageField(upload_to=book_dir_path)
     pdf_file = models.FileField(upload_to=book_dir_path)
     description = models.TextField()
-    date_published = models.DateTimeField(auto_now_add=True)
+    date_posted = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
