@@ -1,5 +1,8 @@
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
+from datetime import timedelta
+
 
 def book_dir_path(instance, filename):
     return "book/{0}/{1}".format(instance.title, filename)
@@ -23,6 +26,10 @@ class Book(models.Model):
     pdf_file = models.FileField(upload_to=book_dir_path)
     description = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
+
+    def is_new(self, threshold_days=7):
+        cuttoff = timezone.now() + timedelta(days=threshold_days)
+        return self.date_posted <= cuttoff
 
     def __str__(self):
         return self.title
