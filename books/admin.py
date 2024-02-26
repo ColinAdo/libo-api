@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
 
-from .models import Category, Book
+from .models import Category, Book, Progress
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ["title"]
@@ -23,5 +23,15 @@ class BookAdmin(admin.ModelAdmin):
         return mark_safe('<a href="{}"> READ IT </a>'.format(obj.pdf_file.url))
     read_pdf.short_description = 'File'
 
+class ProgressAdmin(admin.ModelAdmin):
+    list_display = [
+        "book",
+        "user",
+        "start_date",
+        "finish_date",
+        "is_complete",
+    ]
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Book, BookAdmin)
+admin.site.register(Progress, ProgressAdmin)
