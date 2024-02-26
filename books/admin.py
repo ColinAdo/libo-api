@@ -29,7 +29,7 @@ class ProgressAdmin(admin.ModelAdmin):
         "user",
         "start_date",
         "finish_date",
-        "is_complete",
+        "is_completed",
     ]
 
 admin.site.register(Category, CategoryAdmin)
