@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 3rd party libraries
+    'rest_framework',
+
+    # local apps
     'accounts.apps.AccountsConfig',
     'books.apps.BooksConfig',
 ]
