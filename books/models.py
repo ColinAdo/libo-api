@@ -22,8 +22,8 @@ class Book(models.Model):
     favourites = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="favourite", blank=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="likes", blank=True)
     readers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="readers", blank=True)
-    cover_image = models.ImageField(upload_to=book_dir_path)
-    pdf_file = models.FileField(upload_to=book_dir_path)
+    cover_image = models.ImageField(upload_to=book_dir_path, blank=True)
+    pdf_file = models.FileField(upload_to=book_dir_path, blank=True)
     description = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
 
