@@ -68,4 +68,6 @@ class BookSerializer(serializers.ModelSerializer):
         return count
 
     def get_description(self, obj):
+        if len(obj.description) < 80:
+            return obj.description
         return f"{obj.description[:80]}..."
