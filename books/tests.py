@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 
 from .models import Category, Book, Progress, Review
 
-
 class CategoryTestCase(TestCase):
 
     @classmethod
