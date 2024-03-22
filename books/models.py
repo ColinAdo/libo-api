@@ -3,17 +3,14 @@ from django.db import models
 from django.utils import timezone
 from datetime import timedelta
 
-
 def book_dir_path(instance, filename):
     return "book/{0}/{1}".format(instance.title, filename)
-
 
 class Category(models.Model):
     title = models.CharField(max_length=200)
 
     def __str__(self):
         return self.title
-
 
 class Book(models.Model):
     category = models.ForeignKey(Category, related_name="books", on_delete=models.CASCADE)
