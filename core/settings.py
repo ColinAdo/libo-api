@@ -93,7 +93,8 @@ DATABASES = {
 # Django rest framework settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'core.authentication.CustomJWTAuthentication',
     ],
 
     'DEFAULT_PERMISSION_CLASSES': [
@@ -135,6 +136,9 @@ CORS_ALLOWED_ORIGINS = os.getenv(
 ).split(',')
 
 CORS_ALLOW_CREDENTIALS = True
+
+# Cookie settings
+AUTH_COOKIE = 'access'
 
 
 # Password validation
