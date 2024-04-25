@@ -50,7 +50,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -103,7 +102,6 @@ REST_FRAMEWORK = {
 }
 
 # Djoser settings
-
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'password-rest/{uid}/{token}',
     'ACTIVATION_URL': 'activation/{uid}/{token}',
@@ -139,6 +137,12 @@ CORS_ALLOW_CREDENTIALS = True
 
 # Cookie settings
 AUTH_COOKIE = 'access'
+AUTH_COOKIE_ACCESS_MAX_AGE = 60 * 5
+AUTH_COOKIE_REFRESH_MAX_AGE = 60 * 60 * 24
+AUTH_COOKIE_SECURE = os.getenv('AUTH_COOKIE_SECURE', 'True') == 'True'
+AUTH_COOKIE_HTTP_ONLY = True
+AUTH_COOKIE_SAMESITE = 'None'
+AUTH_COOKIE_PATH = '/'
 
 
 # Password validation
