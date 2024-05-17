@@ -1,7 +1,9 @@
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 from rest_framework.test import APITestCase
 from rest_framework import status
+from rest_framework_simplejwt.tokens import AccessToken
 
 from books.models import Book, Category
 from books.api.serializers import BookSerializer
@@ -10,6 +12,12 @@ from books.api.serializers import BookSerializer
 class BookApiTestCase(APITestCase):
     @classmethod
     def setUpTestData(cls):
+        User = get_user_model()
+        cls.user = User.objects.create(
+            username='testuser',
+            email='testuser@example.com',
+            password='testpassword'
+        )
         cls.category = Category.objects.create(
             title="Test Category"
         )
@@ -19,7 +27,10 @@ class BookApiTestCase(APITestCase):
             title="Test Title",
         )
 
+        cls.access_token = AccessToken.for_user(cls.user)
+
     def test_post_books(self):
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
         url = reverse("books")
 
         data = {
@@ -33,6 +44,7 @@ class BookApiTestCase(APITestCase):
         self.assertEqual(Book.objects.count(), 2)
 
     def test_get_books(self):
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
         url = reverse("books")
         response = self.client.get(url, format='json')
 
@@ -44,6 +56,7 @@ class BookApiTestCase(APITestCase):
         self.assertEqual(len(response.data), 1)
 
     def test_retrieve_books(self):
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
         url = reverse("book_detail", kwargs={'pk': self.book.id})
         response = self.client.get(url, format='json')
 
