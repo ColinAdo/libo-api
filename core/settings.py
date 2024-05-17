@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # local apps
     'accounts.apps.AccountsConfig',
     'books.apps.BooksConfig',
+    'progresses.apps.ProgressesConfig',
 ]
 
 MIDDLEWARE = [
