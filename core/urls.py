@@ -9,5 +9,6 @@ urlpatterns = [
     # path('api/', include('djoser.urls.jwt')),
     path('api/', include('accounts.urls')),
     path('api/v1/', include('books.api.urls')),
+    path('api/v1/', include('progresses.api.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
