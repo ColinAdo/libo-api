@@ -42,7 +42,6 @@ class BookSerializer(serializers.ModelSerializer):
             "category",
             "author",
             "title",
-            "favourites",
             "cover_image",
             "pdf_file",
             "likes",
