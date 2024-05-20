@@ -16,7 +16,6 @@ class Book(models.Model):
     category = models.ForeignKey(Category, related_name="books", on_delete=models.CASCADE)
     author = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
-    favourites = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="favourite", blank=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="likes", blank=True)
     readers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="readers", blank=True)
     cover_image = models.ImageField(upload_to=book_dir_path, blank=True)
