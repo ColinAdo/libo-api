@@ -11,5 +11,6 @@ urlpatterns = [
     path('api/v1/', include('books.api.urls')),
     path('api/v1/', include('progresses.api.urls')),
     path('api/v1/', include('favourites.api.urls')),
+    path('api/v1/', include('reviews.api.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
