@@ -1,3 +1,14 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import LikeReview
+
+
+class LikeReviewAdmin(admin.ModelAdmin):
+    list_display = [
+        "user",
+        "review",
+        "date",
+    ]
+
+
+admin.site.register(LikeReview, LikeReviewAdmin)
