@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'progresses.apps.ProgressesConfig',
     'favourites.apps.FavouritesConfig',
     'reviews.apps.ReviewsConfig',
+    'likes.apps.LikesConfig',
 ]
 
 MIDDLEWARE = [
