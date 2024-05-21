@@ -21,7 +21,7 @@ class BookSerializer(serializers.ModelSerializer):
     likes = UserSerializer(many=True, read_only=True)
     likes_count = serializers.SerializerMethodField()
 
-    reviews = serializers.SerializerMethodField()
+    reviews = ProgressSerializer(many=True, read_only=True)
     reviews_count = serializers.SerializerMethodField()
 
     readers = UserSerializer(many=True, read_only=True)
@@ -44,9 +44,16 @@ class BookSerializer(serializers.ModelSerializer):
             "readers_count",
             "progress",
             "progress_count",
+            "reviews",
+            "reviews_count",
+            "readers_count",
             "description",
             "date_posted"
         )
+    
+    def get_reviews_count(self, obj):
+        count = len(obj.progress.all())
+        return count
     
     def get_progress_count(self, obj):
         count = len(obj.progress.all())
