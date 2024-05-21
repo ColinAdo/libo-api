@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
 
-from .models import Category, Book, Review
+from .models import Category, Book
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ["title"]
@@ -24,13 +24,5 @@ class BookAdmin(admin.ModelAdmin):
     read_pdf.short_description = 'File'
 
 
-class ReviewAdmin(admin.ModelAdmin):
-    list_display = [
-        "user",
-        "book",
-        "date",
-    ]
-
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Book, BookAdmin)
-admin.site.register(Review, ReviewAdmin)
