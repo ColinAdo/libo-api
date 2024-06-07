@@ -4,7 +4,7 @@ from django.utils import timezone
 from datetime import timedelta
 
 def book_dir_path(instance, filename):
-    return "book/{0}/{1}".format(instance.title, filename)
+    return "book/{0}/{1}".format(instance.category.title, filename)
 
 class Category(models.Model):
     title = models.CharField(max_length=200)
