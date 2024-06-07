@@ -3,6 +3,8 @@ from django.db import models
 from django.utils import timezone
 from datetime import timedelta
 
+import fitz
+
 def book_dir_path(instance, filename):
     return "book/{0}/{1}".format(instance.category.title, filename)
 
@@ -21,6 +23,7 @@ class Book(models.Model):
     cover_image = models.ImageField(upload_to=book_dir_path, blank=True)
     pdf_file = models.FileField(upload_to=book_dir_path, blank=True)
     description = models.TextField()
+    text_content = models.TextField(blank=True, null=True)
     date_posted = models.DateTimeField(auto_now_add=True)
 
     def is_new(self, threshold_days=7):
@@ -29,3 +32,15 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        if self.pdf_file and not self.text_content:
+            self.extract_text()
+        super().save(*args, **kwargs)
+
+    def extract_text(self):
+        with fitz.open(self.pdf_file.path) as pdf:
+            text = ""
+            for page in pdf:
+                text += page.get_text()
+            self.text_content = text
