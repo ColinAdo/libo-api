@@ -48,8 +48,10 @@ class BookSerializer(serializers.ModelSerializer):
             "reviews_count",
             "readers_count",
             "description",
+            "text_content",
             "date_posted"
         )
+        read_only_fields = ['text_content']
     
     def get_reviews_count(self, obj):
         count = len(obj.progress.all())
