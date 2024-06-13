@@ -117,6 +117,11 @@ DJOSER = {
     'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': os.getenv('REDIRECT_URIS')
 }
 
+# Celery settings
+# Run: celery -A core worker --loglevel=info
+BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+
+
 # Email settings
 EMAIL_BACKEND = 'django_ses.SESBackend'
 DEFAULT_FROM_EMAIL = os.getenv('AWS_SES_FROM_EMAIL')
