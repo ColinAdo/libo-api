@@ -10,11 +10,12 @@ class Progress(models.Model):
     book = models.ForeignKey(Book, related_name="progress",on_delete=models.CASCADE)
     start_date = models.DateTimeField(auto_now_add=True)
     finish_date = models.DateTimeField(blank=True, null=True)
+    is_reading = models.BooleanField(default=False, blank=True, null=True)
     is_completed = models.BooleanField(default=False)
 
     def set_finish_time(self):
         # Change the finish date
-        self.finish_date = self.start_date + timedelta(minutes=2)
+        self.finish_date = self.start_date + timedelta(minutes=1)
         self.save()
 
     @property
