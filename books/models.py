@@ -6,7 +6,7 @@ from datetime import timedelta
 import fitz
 
 def book_dir_path(instance, filename):
-    return "book/{0}/{1}".format(instance.category.title, filename)
+    return "book/{0}/{1}".format(instance.author, filename)
 
 class Category(models.Model):
     title = models.CharField(max_length=200)
