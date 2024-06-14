@@ -1,10 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from shortuuid.django_fields import ShortUUIDField
 
 def user_directory_path(instance, filename):
     return "profile/{0}/{1}".format(instance.username, filename)
 
+characters = "abcdefghijklmnopqrstuvwxyz0123456789ABCDFGHIJKLMNOPQRSTUVWXYZ" 
 class CustomUser(AbstractUser):
+    profId = ShortUUIDField(unique=True, length=10, max_length=20, alphabet=characters)
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=255)
     profile_picture = models.ImageField(default='profile.png', upload_to=user_directory_path)
