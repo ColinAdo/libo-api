@@ -10,6 +10,7 @@ def send_completion_email_after_seven_days(progress_id):
     progress = Progress.objects.get(id=progress_id)
     if progress.remaining_time == 0:
         progress.mark_as_complete()
+        progress.is_reading = False
         progress.save()
 
         domain = f'http://localhost:8000/{progress.book.pdf_file.url}'
