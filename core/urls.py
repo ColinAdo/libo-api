@@ -8,6 +8,7 @@ urlpatterns = [
     path('api/', include('djoser.urls')),
     # path('api/', include('djoser.urls.jwt')),
     path('api/', include('accounts.urls')),
+    path('api/v1/', include('accounts.api.urls')),
     path('api/v1/', include('books.api.urls')),
     path('api/v1/', include('progresses.api.urls')),
     path('api/v1/', include('favourites.api.urls')),
