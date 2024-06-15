@@ -9,7 +9,7 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView
 )
 
-
+# Custom Provider Authentication view
 class CustomProviderAuthView(ProviderAuthView):
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
