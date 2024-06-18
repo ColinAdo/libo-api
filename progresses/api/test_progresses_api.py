@@ -9,6 +9,7 @@ from progresses.api.serializers import ProgressSerializer
 from progresses.models import Progress
 from books.models import Book, Category
 
+# Test progress tes case
 class TestProgress(APITestCase):
     @classmethod
     def setUpTestData(cls):
