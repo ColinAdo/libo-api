@@ -18,7 +18,7 @@ class ProgressViewset(viewsets.ModelViewSet):
         progress = serializer.save(user=self.request.user)
         progress.set_finish_time()
 
-
+# Read view 
 class ReadView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
