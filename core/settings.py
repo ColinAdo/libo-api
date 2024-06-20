@@ -117,17 +117,13 @@ DJOSER = {
     'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': os.getenv('REDIRECT_URIS')
 }
 
-# Celery settings
+# Celery settings in outside docker
 # Run: celery -A core worker --loglevel=info
 # BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 
-# settings.py
-
-# Celery configuration
-CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', 'amqp://guest:guest@localhost:5672//')
-CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', 'redis://localhost:6379/0')
-
-
+# Celery configuration on docker
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER')
+CELERY_RESULT_BACKEND = os.getenv('CELERY_BROKER')
 
 
 # Email settings
