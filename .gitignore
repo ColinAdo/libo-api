@@ -99,6 +99,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+.readme.sh
 .env
 .env.local
 .venv
