@@ -31,7 +31,7 @@ class BookApiTestCase(APITestCase):
 
     def test_post_books(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
-        url = reverse("books")
+        url = reverse("books-list")
 
         data = {
             "category": self.category.id,
@@ -45,7 +45,7 @@ class BookApiTestCase(APITestCase):
 
     def test_get_books(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
-        url = reverse("books")
+        url = reverse("books-list")
         response = self.client.get(url, format='json')
 
         queryset = Book.objects.all()
@@ -57,7 +57,7 @@ class BookApiTestCase(APITestCase):
 
     def test_retrieve_books(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
-        url = reverse("book_detail", kwargs={'pk': self.book.id})
+        url = reverse("books-detail", kwargs={'pk': self.book.id})
         response = self.client.get(url, format='json')
 
         obj = Book.objects.get(id=self.book.id)
