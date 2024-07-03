@@ -33,7 +33,8 @@ class ProgressTestCase(TestCase):
         self.assertEqual(Progress.objects.count(), 1)
         self.assertEqual(self.progress.user, self.user)
         self.assertEqual(self.progress.book, self.book)
-        self.assertEqual(self.progress.finish_date, None)
+        self.assertIsNone(self.progress.finish_date)
+        self.assertIsNone(self.progress.remaining_time)
         self.assertEqual(self.progress.is_completed, False)
         self.assertEqual(str(self.progress), f"{self.user.username} Progress")
 
