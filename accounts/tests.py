@@ -1,5 +1,9 @@
 from django.test import TestCase
+from django.core.files.uploadedfile import SimpleUploadedFile
+
 from .models import CustomUser
+
+import os
 
 class CustomUserTestCase(TestCase):
     @classmethod
@@ -8,9 +12,22 @@ class CustomUserTestCase(TestCase):
             username='testuser',
             email='testuser@example.com',
         )
+        cls.test_file = SimpleUploadedFile('profile.png', b'file_content', content_type='image/png')
 
     def test_user_model_content(self):
         self.assertEqual(CustomUser.objects.count(), 1)
         self.assertEqual(self.user.username, 'testuser')
         self.assertEqual(self.user.email, 'testuser@example.com')
         self.assertEqual(str(self.user), 'testuser')
+
+    def test_user_directory_path(self):
+        self.user.profile_picture = self.test_file
+        self.user.save()
+
+        stored_path = self.user.profile_picture.name
+        directory, filename = os.path.split(stored_path)
+
+        expected_directory = f'profile/{self.user.username}'
+
+        self.assertEqual(directory, expected_directory)
+        self.assertTrue(filename.startswith('profile'))
