@@ -33,14 +33,17 @@ class Book(models.Model):
     def __str__(self):
         return self.title
     
-    def save(self, *args, **kwargs):
-        if self.pdf_file and not self.text_content:
-            self.extract_text()
-        super().save(*args, **kwargs)
+    # TODO: 
+    # 1. Handle chat with pdf
+    # 2. Test this section 
+    # def save(self, *args, **kwargs):
+    #     if self.pdf_file and not self.text_content:
+    #         self.extract_text()
+    #     super().save(*args, **kwargs)
 
-    def extract_text(self):
-        with fitz.open(self.pdf_file.path) as pdf:
-            text = ""
-            for page in pdf:
-                text += page.get_text()
-            self.text_content = text
+    # def extract_text(self):
+    #     with fitz.open(self.pdf_file.path) as pdf:
+    #         text = ""
+    #         for page in pdf:
+    #             text += page.get_text()
+    #         self.text_content = text
