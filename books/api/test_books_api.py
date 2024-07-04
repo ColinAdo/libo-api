@@ -25,6 +25,7 @@ class BookApiTestCase(APITestCase):
             category=cls.category,
             author="Test Author",
             title="Test Title",
+            description='In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.'
         )
 
         cls.access_token = AccessToken.for_user(cls.user)
@@ -65,3 +66,8 @@ class BookApiTestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
+
+    def test_get_book_description(self):
+        serializer = BookSerializer(self.book)
+
+        self.assertEqual(serializer.data['description'], f'{self.book.description[:80]}...')
