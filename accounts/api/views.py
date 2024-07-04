@@ -9,6 +9,7 @@ from favourites.models import Favourite
 from favourites.api.serializers import FavouriteSerializer
 from .serializers import UserSerializer
 
+# Profile view
 class ProfileView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
