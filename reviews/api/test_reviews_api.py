@@ -35,19 +35,20 @@ class ReviewApiTestCase(APITestCase):
 
         cls.access_token = AccessToken.for_user(cls.user)
 
-    def test_post_reviews(self):
+    def test_perform_create(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
         url = reverse('reviews-list')
         data = {
-            "user": self.user.id,
             "book": self.book.id,
             "content": "second review"
         }
 
         response = self.client.post(url, data, format='json')
+        review = Review.objects.get(id=response.data['id'])
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Review.objects.count(), 2)
+        self.assertEqual(review.user, self.user)
 
     def test_get_reviews(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
