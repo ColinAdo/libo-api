@@ -9,6 +9,7 @@ from core.authentication import CustomJWTAuthentication
 
 import os
 
+# Custom user test case
 class CustomUserTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
