@@ -1,7 +1,11 @@
 from django.test import TestCase
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.contrib.auth import get_user_model
+
+from rest_framework.test import APIRequestFactory
 
 from .models import CustomUser
+from core.authentication import CustomJWTAuthentication
 
 import os
 
@@ -31,3 +35,31 @@ class CustomUserTestCase(TestCase):
 
         self.assertEqual(directory, expected_directory)
         self.assertTrue(filename.startswith('profile'))
+
+class CustomJWTAuthenticationTestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.factory = APIRequestFactory()
+        cls.auth = CustomJWTAuthentication()
+
+        User = get_user_model()
+        cls.user = User.objects.create(
+            username='testuser',
+            email='testuser@example.com',
+            password='testpass'
+        )
+
+    def test_authenticate_no_token(self):
+        request = self.factory.get('/')
+
+        request = self.auth.authenticate(request)
+
+        self.assertIsNone(request)
+
+    def test_authenticate_invalid_token(self):
+        request = self.factory.get('/')
+        request.META['HTTP_AUTHORIZATION'] = 'Bearer invalidtoken'
+        
+        result = self.auth.authenticate(request)
+        
+        self.assertIsNone(result)
