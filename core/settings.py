@@ -141,6 +141,8 @@ USE_SES_V2 = True
 DOMAIN = os.getenv('DOMAIN')
 SITE_NAME = 'Libo'
 
+CHAT_API_KEY = os.getenv('CHAT_API_KEY')
+
 
 # cors headers settings
 CORS_ALLOWED_ORIGINS = os.getenv(

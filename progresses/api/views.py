@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.conf import settings
 
 from rest_framework.views import APIView
 from rest_framework import viewsets, permissions, status
@@ -29,7 +30,7 @@ class ReadView(APIView):
         book = get_object_or_404(Book, pk=pk)
 
         headers = {
-        'x-api-key': '',
+        'x-api-key': f'{settings.CHAT_API_KEY}',
         'Content-Type': 'application/json'
         }
         data = {'url': 'https://uscode.house.gov/static/constitution.pdf'}
@@ -61,7 +62,7 @@ class ChatPDFView(APIView):
     def get(self, request, *args, **kwargs):
 
         headers = {
-            'x-api-key': '',
+            'x-api-key': f'{settings.CHAT_API_KEY}',
             "Content-Type": "application/json",
         }
 
@@ -91,7 +92,7 @@ class ChatPDFView(APIView):
 class DeleteChatPDFView(APIView):
     def get(self, request, *args, **kwargs):
         headers = {
-        'x-api-key': '',
+        'x-api-key': f'{settings.CHAT_API_KEY}',
         'Content-Type': 'application/json',
         }
 
