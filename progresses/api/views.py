@@ -53,3 +53,37 @@ class ReadView(APIView):
             send_completion_email_after_seven_days.apply_async(args=[str(created.id)], countdown=1 * 60) 
 
         return Response(status=status.HTTP_200_OK)
+
+class ChatPDFView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    
+
+    def get(self, request, *args, **kwargs):
+
+        headers = {
+            'x-api-key': '',
+            "Content-Type": "application/json",
+        }
+
+        data = {
+            'referenceSources': True,
+            'sourceId': "",
+            'messages': [
+                {
+                    'role': "user",
+                    'content': "Who wrote the constitution?",
+                }
+            ]
+        }
+
+        response = requests.post(
+            'https://api.chatpdf.com/v1/chats/message', headers=headers, json=data)
+
+        result_data = {
+            'Result': response.json()['content']
+        }
+        if response.status_code != 200:
+            return Response(response.status_code, response.text)
+
+            
+        return Response(result_data, status=status.HTTP_200_OK)
