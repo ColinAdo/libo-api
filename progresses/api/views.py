@@ -57,9 +57,9 @@ class ReadView(APIView):
 
 class ChatPDFView(APIView):
     permission_classes = [permissions.IsAuthenticated]
-    
 
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
+        content = request.data
 
         headers = {
             'x-api-key': f'{settings.CHAT_API_KEY}',
@@ -72,7 +72,7 @@ class ChatPDFView(APIView):
             'messages': [
                 {
                     'role': "user",
-                    'content': "Who wrote the constitution?",
+                    'content': f"{content}",
                 }
             ]
         }
@@ -91,7 +91,7 @@ class ChatPDFView(APIView):
     
 class DeleteChatPDFView(APIView):
     permission_classes = [permissions.IsAuthenticated]
-    
+
     def get(self, request, *args, **kwargs):
         headers = {
         'x-api-key': f'{settings.CHAT_API_KEY}',
