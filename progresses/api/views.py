@@ -12,6 +12,7 @@ from books.models import Book
 
 import requests
 
+# Progress viewset
 class ProgressViewset(viewsets.ModelViewSet):
     queryset = Progress.objects.all()
     permission_classes = [permissions.IsAuthenticated]
