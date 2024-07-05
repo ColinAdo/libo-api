@@ -87,3 +87,22 @@ class ChatPDFView(APIView):
 
             
         return Response(result_data, status=status.HTTP_200_OK)
+    
+class DeleteChatPDFView(APIView):
+    def get(self, request, *args, **kwargs):
+        headers = {
+        'x-api-key': '',
+        'Content-Type': 'application/json',
+        }
+
+        data = {
+        'sources': [''],
+        }
+
+        try:
+            response = requests.post(
+                'https://api.chatpdf.com/v1/sources/delete', json=data, headers=headers)
+            response.raise_for_status()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except requests.exceptions.RequestException as error:
+            return Response({"status": error, "Response": error.response.text})
