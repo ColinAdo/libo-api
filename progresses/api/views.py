@@ -90,6 +90,8 @@ class ChatPDFView(APIView):
         return Response(result_data, status=status.HTTP_200_OK)
     
 class DeleteChatPDFView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    
     def get(self, request, *args, **kwargs):
         headers = {
         'x-api-key': f'{settings.CHAT_API_KEY}',
