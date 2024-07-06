@@ -110,3 +110,6 @@ class DeleteChatPDFView(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except requests.exceptions.RequestException as error:
             return Response({"status": error, "Response": error.response.text})
+        
+# TODO:
+    # TODO: Add book ID to chat and delete endpoint.
