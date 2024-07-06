@@ -56,6 +56,7 @@ class ReadView(APIView):
 
         return Response(status=status.HTTP_200_OK)
 
+# Chat with PDF view
 class ChatPDFView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
