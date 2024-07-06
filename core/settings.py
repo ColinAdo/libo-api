@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'djoser',
     'corsheaders',
     'social_django',
+    'django_coverage_plugin',
 
     # local apps
     'accounts.apps.AccountsConfig',
