@@ -12,6 +12,7 @@ from favourites.api.serializers import FavouriteSerializer
 from books.models import Book, Category
 from .serializers import UserSerializer
 
+# Profile test case
 class ProfileApiTestCase(APITestCase):
     @classmethod
     def setUpTestData(cls):
