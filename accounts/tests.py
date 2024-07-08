@@ -37,6 +37,7 @@ class CustomUserTestCase(TestCase):
         self.assertEqual(directory, expected_directory)
         self.assertTrue(filename.startswith('profile'))
 
+# custom jwt authentication test case
 class CustomJWTAuthenticationTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
