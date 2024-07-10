@@ -46,7 +46,7 @@ class ProfileApiTestCase(APITestCase):
         cls.read_book = Progress.objects.create(user=cls.user, book=cls.book2, is_reading=False)
         cls.favourite_book = Favourite.objects.create(user=cls.user, book=cls.book2)
 
-    def test_retrieve_owner_profile(self):
+    def test_retrieve_owner_profile_complete(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
         url = reverse('profile', kwargs={'profId': self.user.profId})
         response = self.client.get(url, format='json')
@@ -71,6 +71,18 @@ class ProfileApiTestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
+
+    def test_retrieve_owner_profile_data_only(self):
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
+        url = reverse('profile', kwargs={'profId': self.user.profId})
+        response = self.client.get(url, format='json')
+
+        User = get_user_model()
+        profile = User.objects.get(profId=self.user.profId)
+        profile_data = UserSerializer(profile).data
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['profile'], profile_data)
 
     def test_retrieve_other_user_profile(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.other_access_token}')
