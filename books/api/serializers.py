@@ -7,7 +7,7 @@ from books.models import Book
 from progresses.api.serializers import ProgressSerializer
 
 
-class UserSerializer(serializers.ModelSerializer):
+class BookUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
@@ -18,13 +18,13 @@ class BookSerializer(serializers.ModelSerializer):
     progress = ProgressSerializer(many=True, read_only=True)
     progress_count = serializers.SerializerMethodField()
 
-    likes = UserSerializer(many=True, read_only=True)
+    likes = BookUserSerializer(many=True, read_only=True)
     likes_count = serializers.SerializerMethodField()
 
     reviews = ProgressSerializer(many=True, read_only=True)
     reviews_count = serializers.SerializerMethodField()
 
-    readers = UserSerializer(many=True, read_only=True)
+    readers = BookUserSerializer(many=True, read_only=True)
     readers_count = serializers.SerializerMethodField()
 
     description = serializers.SerializerMethodField()
