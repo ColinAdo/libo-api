@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'social_django',
     'django_coverage_plugin',
+    'drf_spectacular',
 
     # local apps
     'accounts.apps.AccountsConfig',
@@ -104,7 +105,16 @@ REST_FRAMEWORK = {
 
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Libo API',
+    'DESCRIPTION': 'Libo API is library that helps you to read and chat with pdf, the pdf will be sent to users email.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
 
 # Djoser settings
