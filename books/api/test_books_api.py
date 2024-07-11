@@ -9,6 +9,7 @@ from books.models import Book, Category
 from books.api.serializers import BookSerializer
 
 
+# Book API test case
 class BookApiTestCase(APITestCase):
     @classmethod
     def setUpTestData(cls):
