@@ -6,7 +6,7 @@ from books.models import Book
 
 from progresses.api.serializers import ProgressSerializer
 
-
+# Book User serializer
 class BookUserSerializer(serializers.ModelSerializer):
 
     class Meta:
