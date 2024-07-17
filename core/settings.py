@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'social_django',
     'django_coverage_plugin',
     'drf_spectacular',
+    'django_extensions',
 
     # local apps
     'accounts.apps.AccountsConfig',
