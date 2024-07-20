@@ -3,8 +3,6 @@ from django.db import models
 from django.utils import timezone
 from datetime import timedelta
 
-import fitz
-
 def book_dir_path(instance, filename):
     return "book/{0}/{1}".format(instance.author, filename)
 
