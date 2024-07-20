@@ -5,6 +5,7 @@ from .models import Category, Book
 
 import os
 
+# Category test case
 class CategoryTestCase(TestCase):
 
     @classmethod
