@@ -13,7 +13,7 @@ class BookUserSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = ("id", "username")
 
-
+# Book serializer
 class BookSerializer(serializers.ModelSerializer):
     progress = ProgressSerializer(many=True, read_only=True)
     progress_count = serializers.SerializerMethodField()
