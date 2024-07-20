@@ -3,6 +3,7 @@ from django.utils.html import mark_safe
 
 from .models import Category, Book
 
+# Category admin
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ["title"]
 
