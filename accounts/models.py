@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from shortuuid.django_fields import ShortUUIDField
 
+# user directory path
 def user_directory_path(instance, filename):
     return "profile/{0}/{1}".format(instance.username, filename)
 
