@@ -7,6 +7,7 @@ from .models import Category, Book
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ["title"]
 
+# Book admin
 class BookAdmin(admin.ModelAdmin):
     list_display = [
         "category", 
