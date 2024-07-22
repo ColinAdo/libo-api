@@ -8,7 +8,7 @@ from .serializers import FavouriteSerializer
 from favourites.models import Favourite
 from books.models import Book
 
-
+# Favorite viewset 
 class FavouriteView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = FavouriteSerializer
