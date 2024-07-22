@@ -22,6 +22,7 @@ class CategoryTestCase(TestCase):
         self.assertEqual(str(self.category), "Test Category")
 
 
+# Bokk test case
 class BookTestCase(TestCase):
 
     @classmethod
