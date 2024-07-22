@@ -4,6 +4,7 @@ from django.test import TestCase
 from .models import Favourite
 from books.models import Book, Category
 
+# Favorite test case
 class TestFavourites(TestCase):
     @classmethod
     def setUpTestData(cls):
