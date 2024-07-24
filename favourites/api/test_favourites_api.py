@@ -8,7 +8,7 @@ from rest_framework_simplejwt.tokens import AccessToken
 from favourites.models import Favourite
 from books.models import Book, Category
 
-# FAvourite api test case
+# Favourite api test case
 class TestFavourite(APITestCase):
     @classmethod
     def setUpTestData(cls):
