@@ -8,6 +8,8 @@ from likes.api.serializers import LikeReviewSeralizer
 from likes.models import LikeReview
 from reviews.models import Review
 
+
+# Like reviews view
 class LikeReviewAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     serializers_class = LikeReviewSeralizer
