@@ -5,7 +5,7 @@ from reviews.models import Review
 from likes.models import LikeReview
 from books.models import Book, Category
 
-
+# Likes test case
 class TestLikeReview(TestCase):
     @classmethod
     def setUpTestData(cls):
