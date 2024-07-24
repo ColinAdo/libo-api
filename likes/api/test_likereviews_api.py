@@ -9,7 +9,7 @@ from likes.models import LikeReview
 from reviews.models import Review
 from books.models import Book, Category 
 
-
+# Like post api test case
 class TestLikePost(APITestCase):
     @classmethod
     def setUpTestData(cls):
