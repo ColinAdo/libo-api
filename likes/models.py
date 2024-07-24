@@ -3,6 +3,7 @@ from django.db import models
 
 from reviews.models import Review
 
+# Like review models
 class LikeReview(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     review = models.ForeignKey(Review,related_name='likes', on_delete=models.CASCADE)
