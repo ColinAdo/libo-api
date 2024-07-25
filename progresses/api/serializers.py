@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from progresses.models import Progress
 
+# Progress serializer
 class ProgressSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
     class Meta:
