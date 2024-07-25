@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from .models import Progress
 from books.models import Book, Category
 
+# Progress tets case
 class ProgressTestCase(TestCase):
 
     @classmethod
