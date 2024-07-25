@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from .models import Progress
 
+# Progress admin
 class ProgressAdmin(admin.ModelAdmin):
     list_display = [
         "book",
