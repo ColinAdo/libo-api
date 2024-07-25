@@ -5,6 +5,7 @@ from .models import Progress
 
 from celery import shared_task
 
+# Signal to update progresses and send mails after the book is completed
 @shared_task
 def send_completion_email_after_seven_days(progress_id):
     progress = Progress.objects.get(id=progress_id)
