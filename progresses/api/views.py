@@ -90,7 +90,8 @@ class ChatPDFView(APIView):
 
             
         return Response(result_data, status=status.HTTP_200_OK)
-    
+
+# Delete chat with pdf 
 class DeleteChatPDFView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
