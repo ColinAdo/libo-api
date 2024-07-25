@@ -4,6 +4,7 @@ from django.test import TestCase
 from books.models import Book, Category
 from .models import Review
 
+# Review test case 
 class ReviewTestCase(TestCase):
 
     @classmethod
