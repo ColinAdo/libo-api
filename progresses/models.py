@@ -5,6 +5,7 @@ from datetime import timedelta
 
 from books.models import Book
 
+# Progress model
 class Progress(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, related_name="progress",on_delete=models.CASCADE)
