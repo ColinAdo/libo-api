@@ -5,6 +5,7 @@ from .permissions import IsOwnerOrReadOnly
 
 from reviews.models import Review
 
+# Review viewset
 class ReviewsViewset(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = ReviewSerializer
