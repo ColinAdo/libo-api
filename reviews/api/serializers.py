@@ -3,6 +3,7 @@ from rest_framework import serializers
 from reviews.models import Review
 from likes.api.serializers import LikeReviewSeralizer
 
+# Review serializer
 class ReviewSerializer(serializers.ModelSerializer):
     reviewed_by = serializers.ReadOnlyField(source='user.username')
 
