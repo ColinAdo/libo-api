@@ -11,7 +11,7 @@ from .permissions import IsOwnerOrReadOnly
 from reviews.models import Review
 from books.models import Book, Category
 
-
+# Rview api test case
 class ReviewApiTestCase(APITestCase):
     @classmethod
     def setUpTestData(cls):
