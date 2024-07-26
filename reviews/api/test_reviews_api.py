@@ -102,6 +102,7 @@ class ReviewApiTestCase(APITestCase):
         self.assertEqual(Review.objects.count(), 0)
 
 
+# Is owner or read only test case
 class IsOwnerOrReadOnlyTestCase(APITestCase):
     @classmethod
     def setUpTestData(cls):
