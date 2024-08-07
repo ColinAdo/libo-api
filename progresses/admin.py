@@ -5,11 +5,11 @@ from .models import Progress
 # Progress admin
 class ProgressAdmin(admin.ModelAdmin):
     list_display = [
-        "book",
-        "user",
-        "start_date",
-        "finish_date",
-        "is_completed",
+        'book',
+        'user',
+        'start_date',
+        'finish_date',
+        'is_completed',
     ]
 
 
