@@ -5,9 +5,9 @@ from .models import Review
 # Reviews admin
 class ReviewAdmin(admin.ModelAdmin):
     list_display = [
-        "user",
-        "book",
-        "date",
+        'user',
+        'book',
+        'date',
     ]
 
 
