@@ -6,7 +6,7 @@ from books.models import Book
 # Review model
 class Review(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
-    book = models.ForeignKey(Book, related_name="reviews", on_delete=models.DO_NOTHING)
+    book = models.ForeignKey(Book, related_name='reviews', on_delete=models.DO_NOTHING)
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
