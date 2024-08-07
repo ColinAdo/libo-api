@@ -8,7 +8,7 @@ from books.models import Book
 # Progress model
 class Progress(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, related_name="progress",on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, related_name='progress',on_delete=models.CASCADE)
     start_date = models.DateTimeField(auto_now_add=True)
     finish_date = models.DateTimeField(blank=True, null=True)
     is_reading = models.BooleanField(default=True, blank=True, null=True)
@@ -33,4 +33,4 @@ class Progress(models.Model):
         self.save()
 
     def __str__(self):
-        return f"{self.user.username} Progress"
+        return f'{self.user.username} Progress'
