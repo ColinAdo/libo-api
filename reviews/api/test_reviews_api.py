@@ -22,17 +22,17 @@ class ReviewApiTestCase(APITestCase):
             password='testpassword'
         )
         cls.category = Category.objects.create(
-            title="Test Category"
+            title='Test Category'
         )
         cls.book = Book.objects.create(
             category=cls.category,
-            author="Test Author",
-            title="Test Title",
+            author='Test Author',
+            title='Test Title',
         )
         cls.review = Review.objects.create(
             user=cls.user,
             book=cls.book,
-            content="test content"
+            content='test content'
         )
 
         cls.access_token = AccessToken.for_user(cls.user)
@@ -66,7 +66,7 @@ class ReviewApiTestCase(APITestCase):
 
     def test_retrieve_review(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
-        url = reverse('reviews-detail', kwargs={"pk": self.review.id})
+        url = reverse('reviews-detail', kwargs={'pk': self.review.id})
 
         response = self.client.get(url)
         obj = Review.objects.get(pk=self.review.id)
@@ -78,7 +78,7 @@ class ReviewApiTestCase(APITestCase):
 
     def test_update_review(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
-        url = reverse('reviews-detail', kwargs={"pk": self.review.id})
+        url = reverse('reviews-detail', kwargs={'pk': self.review.id})
 
         data = {
             "user": self.user.id,
@@ -90,11 +90,11 @@ class ReviewApiTestCase(APITestCase):
 
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(self.review.content, "updated content")
+        self.assertEqual(self.review.content, 'updated content')
 
     def test_delete_review(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
-        url = reverse('reviews-detail', kwargs={"pk": self.review.id})
+        url = reverse('reviews-detail', kwargs={'pk': self.review.id})
 
         response = self.client.delete(url)
 
@@ -116,17 +116,17 @@ class IsOwnerOrReadOnlyTestCase(APITestCase):
             email='otheruser@example.com'
         )
         cls.category = Category.objects.create(
-            title="Test Category"
+            title='Test Category'
         )
         cls.book = Book.objects.create(
             category=cls.category,
-            author="Test Author",
-            title="Test Title",
+            author='Test Author',
+            title='Test Title',
         )
         cls.review = Review.objects.create(
             user=cls.user,
             book=cls.book,
-            content="This is review content"
+            content='This is review content'
         )
         cls.permission = IsOwnerOrReadOnly()
         cls.view = APIView()
