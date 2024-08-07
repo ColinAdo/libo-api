@@ -11,18 +11,18 @@ class ProgressTestCase(TestCase):
     def setUpTestData(cls):
         User = get_user_model()
         cls.user = User.objects.create(
-            username="Test User",
-            email="test@example.com",
-            password="testpassword",
+            username='Test User',
+            email='test@example.com',
+            password='testpassword',
         )
         cls.category = Category.objects.create(
-            title="Test Category"
+            title='Test Category'
         )
 
         cls.book = Book.objects.create(
             category=cls.category,
-            author="Test Author",
-            title="Test Book Title"
+            author='Test Author',
+            title='Test Book Title'
         )
 
         cls.progress = Progress.objects.create(
@@ -37,7 +37,7 @@ class ProgressTestCase(TestCase):
         self.assertIsNone(self.progress.finish_date)
         self.assertIsNone(self.progress.remaining_time)
         self.assertEqual(self.progress.is_completed, False)
-        self.assertEqual(str(self.progress), f"{self.user.username} Progress")
+        self.assertEqual(str(self.progress), f'{self.user.username} Progress')
 
     def test_progress_methods(self):
         self.progress.set_finish_time()
