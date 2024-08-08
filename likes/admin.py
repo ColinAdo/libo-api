@@ -5,9 +5,9 @@ from .models import LikeReview
 # Like reviews admin
 class LikeReviewAdmin(admin.ModelAdmin):
     list_display = [
-        "user",
-        "review",
-        "date",
+        'user',
+        'review',
+        'date',
     ]
 
 
