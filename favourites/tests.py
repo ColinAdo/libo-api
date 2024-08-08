@@ -10,18 +10,18 @@ class TestFavourites(TestCase):
     def setUpTestData(cls):
         User = get_user_model()
         cls.user = User.objects.create(
-            username="Test User",
-            email="test@example.com",
-            password="testpassword",
+            username='Test User',
+            email='test@example.com',
+            password='testpassword',
         )
         cls.category = Category.objects.create(
-            title="Test Category"
+            title='Test Category'
         )
 
         cls.book = Book.objects.create(
             category=cls.category,
-            author="Test Author",
-            title="Test Book Title"
+            author='Test Author',
+            title='Test Book Title'
         )
 
         cls.favourite = Favourite.objects.create(
