@@ -20,7 +20,7 @@ class LikeReviewAPIView(APIView):
             liked_reviews = LikeReview.objects.filter(review=review)
 
             serializer = LikeReviewSeralizer(liked_reviews, many=True)
-            return Response({"success": True, "liked_review": serializer.data})
+            return Response({'success': True, 'liked_review': serializer.data})
         
         except ObjectDoesNotExist:
             return Response({'success': 'False', 'message': 'review does not exist'})
@@ -32,9 +32,9 @@ class LikeReviewAPIView(APIView):
 
             if not new_liked_review[1]:
                 new_liked_review[0].delete()
-                return Response({"success": True, "message": "review unliked"})
+                return Response({'success': True, 'message': 'review unliked'})
             else:
-                return Response({"success": True, "message": "review liked"})
+                return Response({'success': True, 'message': 'review liked'})
 
         except ObjectDoesNotExist:
             return Response({'success': 'False', 'message': 'review does not exist'})
