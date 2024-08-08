@@ -19,12 +19,12 @@ class TestFavourite(APITestCase):
             password='testpassword'
         )
         cls.category = Category.objects.create(
-            title="Test Category"
+            title='Test Category'
         )
         cls.book = Book.objects.create(
             category=cls.category,
-            author="Test Author",
-            title="Test Title",
+            author='Test Author',
+            title='Test Title',
         )
         cls.favourite = Favourite.objects.create(
             user=cls.user,
@@ -34,7 +34,7 @@ class TestFavourite(APITestCase):
 
     def test_post_favourite(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
-        url = reverse('favourite', kwargs={"pk": self.book.id})
+        url = reverse('favourite', kwargs={'pk': self.book.id})
 
         response = self.client.post(url)
 
