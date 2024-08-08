@@ -20,13 +20,13 @@ class TestLikePost(APITestCase):
             password='testpassword'
         )
         cls.category = Category.objects.create(
-            title="Test Category"
+            title='Test Category'
         )
 
         cls.book = Book.objects.create(
             category=cls.category,
-            author="Test Author",
-            title="Test Title"
+            author='Test Author',
+            title='Test Title'
         )
 
         cls.review = Review.objects.create(
