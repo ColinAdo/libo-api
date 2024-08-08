@@ -1,9 +1,9 @@
 from django.test import TestCase
 
 from accounts.models import CustomUser
-from reviews.models import Review
-from likes.models import LikeReview
 from books.models import Book, Category
+from likes.models import LikeReview
+from reviews.models import Review
 
 # Likes test case
 class TestLikeReview(TestCase):
@@ -15,13 +15,13 @@ class TestLikeReview(TestCase):
             password='testpassword'
         )
         cls.category = Category.objects.create(
-            title="Test Category"
+            title='Test Category'
         )
 
         cls.book = Book.objects.create(
             category=cls.category,
-            author="Test Author",
-            title="Test Title"
+            author='Test Author',
+            title='Test Title'
         )
 
         cls.review = Review.objects.create(
