@@ -20,12 +20,12 @@ class BookApiTestCase(APITestCase):
             password='testpassword'
         )
         cls.category = Category.objects.create(
-            title="Test Category"
+            title='Test Category'
         )
         cls.book = Book.objects.create(
             category=cls.category,
-            author="Test Author",
-            title="Test Title",
+            author='Test Author',
+            title='Test Title',
             description='In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.'
         )
 
@@ -33,7 +33,7 @@ class BookApiTestCase(APITestCase):
 
     def test_post_books(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
-        url = reverse("books-list")
+        url = reverse('books-list')
 
         data = {
             "category": self.category.id,
@@ -47,7 +47,7 @@ class BookApiTestCase(APITestCase):
 
     def test_get_books(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
-        url = reverse("books-list")
+        url = reverse('books-list')
         response = self.client.get(url, format='json')
 
         queryset = Book.objects.all()
@@ -59,7 +59,7 @@ class BookApiTestCase(APITestCase):
 
     def test_retrieve_books(self):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
-        url = reverse("books-detail", kwargs={'pk': self.book.id})
+        url = reverse('books-detail', kwargs={'pk': self.book.id})
         response = self.client.get(url, format='json')
 
         obj = Book.objects.get(id=self.book.id)
