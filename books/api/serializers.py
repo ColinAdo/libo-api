@@ -11,7 +11,7 @@ class BookUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ("id", "username")
+        fields = ('id', 'username')
 
 # Book serializer
 class BookSerializer(serializers.ModelSerializer):
@@ -32,24 +32,24 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = (
-            "id",
-            "category",
-            "author",
-            "title",
-            "cover_image",
-            "pdf_file",
-            "likes",
-            "likes_count",
-            "readers",
-            "readers_count",
-            "progress",
-            "progress_count",
-            "reviews",
-            "reviews_count",
-            "readers_count",
-            "description",
-            "text_content",
-            "date_posted"
+            'id',
+            'category',
+            'author',
+            'title',
+            'cover_image',
+            'pdf_file',
+            'likes',
+            'likes_count',
+            'readers',
+            'readers_count',
+            'progress',
+            'progress_count',
+            'reviews',
+            'reviews_count',
+            'readers_count',
+            'description',
+            'text_content',
+            'date_posted'
         )
         read_only_fields = ['text_content']
     
