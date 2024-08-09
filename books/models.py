@@ -7,18 +7,20 @@ from datetime import timedelta
 def book_dir_path(instance, filename):
     return "book/{0}/{1}".format(instance.author, filename)
 
+# category model
 class Category(models.Model):
     title = models.CharField(max_length=200)
 
     def __str__(self):
         return self.title
 
+# book model
 class Book(models.Model):
-    category = models.ForeignKey(Category, related_name="books", on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='books', on_delete=models.CASCADE)
     author = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
-    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="likes", blank=True)
-    readers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="readers", blank=True)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likes', blank=True)
+    readers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='readers', blank=True)
     cover_image = models.ImageField(upload_to=book_dir_path, blank=True)
     pdf_file = models.FileField(upload_to=book_dir_path, blank=True)
     description = models.TextField()
