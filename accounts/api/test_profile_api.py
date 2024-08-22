@@ -26,17 +26,17 @@ class ProfileApiTestCase(APITestCase):
             email='otheruser@example.com'
         )
         cls.category = Category.objects.create(
-            title="Test Category"
+            title='Test Category'
         )
         cls.book1 = Book.objects.create(
             category=cls.category,
-            author="Test Author",
-            title="Test Title",
+            author='Test Author',
+            title='Test Title',
         )
         cls.book2 = Book.objects.create(
             category=cls.category,
-            author="Test Author two",
-            title="Test Title two",
+            author='Test Author two',
+            title='Test Title two',
         )
 
         cls.access_token = AccessToken.for_user(cls.user)
