@@ -10,11 +10,11 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     list_display = [
-        "username", 
-        "email", 
-        "display_image",
-        "is_staff", 
-        "is_superuser"
+        'username', 
+        'email', 
+        'display_image',
+        'is_staff', 
+        'is_superuser'
     ]
 
     def display_image(self, obj):
