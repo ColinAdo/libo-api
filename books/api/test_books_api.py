@@ -37,8 +37,8 @@ class BookApiTestCase(APITestCase):
 
         data = {
             "category": self.category.id,
-            "author": "Test Author2",
-            "title": "Test Title2"
+            "author": 'Test Author2',
+            "title": 'Test Title2'
         }
         response = self.client.post(url, data, format='json')
 
