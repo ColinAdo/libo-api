@@ -5,16 +5,16 @@ from .models import Category, Book
 
 # Category admin
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ["title"]
+    list_display = ['title']
 
 # Book admin
 class BookAdmin(admin.ModelAdmin):
     list_display = [
-        "category", 
-        "author", 
-        "title", 
-        "display_image",
-        "read_pdf"
+        'category', 
+        'author', 
+        'title', 
+        'display_image',
+        'read_pdf'
     ]
 
     def display_image(self, obj):
