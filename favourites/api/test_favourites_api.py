@@ -10,6 +10,7 @@ from books.models import Book, Category
 
 # Favourite api test case
 class TestFavourite(APITestCase):
+    
     @classmethod
     def setUpTestData(cls):
         User = get_user_model()
