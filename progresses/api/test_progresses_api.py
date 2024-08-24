@@ -13,6 +13,7 @@ import datetime
 
 # Test progress tes case
 class TestProgress(APITestCase):
+    
     @classmethod
     def setUpTestData(cls):
         User = get_user_model()
