@@ -7,6 +7,7 @@ from reviews.models import Review
 
 # Likes test case
 class TestLikeReview(TestCase):
+    
     @classmethod
     def setUpTestData(cls):
         cls.user = CustomUser.objects.create(
