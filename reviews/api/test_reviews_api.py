@@ -13,6 +13,7 @@ from books.models import Book, Category
 
 # Rview api test case
 class ReviewApiTestCase(APITestCase):
+    
     @classmethod
     def setUpTestData(cls):
         User = get_user_model()
@@ -42,7 +43,7 @@ class ReviewApiTestCase(APITestCase):
         url = reverse('reviews-list')
         data = {
             "book": self.book.id,
-            "content": "second review"
+            "content": 'second review'
         }
 
         response = self.client.post(url, data, format='json')
@@ -104,6 +105,7 @@ class ReviewApiTestCase(APITestCase):
 
 # Is owner or read only test case
 class IsOwnerOrReadOnlyTestCase(APITestCase):
+
     @classmethod
     def setUpTestData(cls):
         User = get_user_model()
