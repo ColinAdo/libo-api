@@ -65,7 +65,7 @@ class ChatPDFView(APIView):
 
         headers = {
             'x-api-key': f'{settings.CHAT_API_KEY}',
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
         }
 
         data = {
