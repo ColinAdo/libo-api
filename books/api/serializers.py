@@ -2,9 +2,8 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
 
-from books.models import Book
-
 from progresses.api.serializers import ProgressSerializer
+from books.models import Book
 
 # Book User serializer
 class BookUserSerializer(serializers.ModelSerializer):
@@ -72,4 +71,4 @@ class BookSerializer(serializers.ModelSerializer):
     def get_description(self, obj):
         if len(obj.description) < 80:
             return obj.description
-        return f"{obj.description[:80]}..."
+        return f'{obj.description[:80]}...'
