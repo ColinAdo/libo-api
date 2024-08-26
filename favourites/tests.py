@@ -6,6 +6,7 @@ from books.models import Book, Category
 
 # Favorite test case
 class TestFavourites(TestCase):
+    
     @classmethod
     def setUpTestData(cls):
         User = get_user_model()
