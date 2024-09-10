@@ -126,7 +126,7 @@ DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
     'TOKEN_MODEL': None,
-    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': os.getenv('REDIRECT_URIS')
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': os.getenv('REDIRECT_URIS').split(','),
 }
 
 # Celery settings in outside docker
@@ -175,6 +175,7 @@ AUTH_COOKIE_PATH = '/'
 # social django settings
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.github.GithubOAuth2',
 
     'django.contrib.auth.backends.ModelBackend',
 )
@@ -187,6 +188,20 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'openid'
 ]
 SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
+
+# Github Oauth settings
+SOCIAL_AUTH_GITHUB_KEY = os.getenv('GITHUB_OAUTH_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = os.getenv('GITHUB_OAUTH_SECRET')
+SOCIAL_AUTH_GITHUB_SCOPE = [
+    'read:user',
+    'user:email'
+]
+
+SOCIAL_AUTH_GITHUB_EXTRA_DATA = [
+    ('login', 'username'),
+    ('email', 'email'),
+    ('name', 'name')
+]
 
 # Openapi key
 OPENAI_API_KEY=os.getenv('OPENAI_API_KEY')
