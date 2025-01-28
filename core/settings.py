@@ -1,6 +1,6 @@
 from pathlib import Path
-from django.core.management.utils import get_random_secret_key
-import dotenv
+from django.core.management.utils import get_random_secret_key # type: ignore
+import dotenv # type: ignore
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
