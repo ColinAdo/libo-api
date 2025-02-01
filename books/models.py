@@ -5,8 +5,8 @@ from django.utils import timezone
 from datetime import timedelta
 
 # Book directory path
-def book_dir_path(instance, filename):
-    return 'book/{0}/{1}'.format(instance.author, filename)
+# def book_dir_path(instance, filename):
+#     return 'book/{0}/{1}'.format(instance.author, filename)
 
 # category model
 class Category(models.Model):
@@ -22,8 +22,10 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likes', blank=True)
     readers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='readers', blank=True)
-    cover_image = models.ImageField(upload_to=book_dir_path, blank=True)
-    pdf_file = models.FileField(upload_to=book_dir_path, blank=True)
+    # cover_image = models.ImageField(upload_to=book_dir_path, blank=True)
+    # pdf_file = models.FileField(upload_to=book_dir_path, blank=True)
+    cover_image = models.ImageField(blank=True)
+    pdf_file = models.FileField(blank=True)
     description = models.TextField()
     text_content = models.TextField(blank=True, null=True)
     date_posted = models.DateTimeField(auto_now_add=True)
