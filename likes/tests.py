@@ -2,8 +2,7 @@ from django.test import TestCase
 
 from accounts.models import CustomUser
 from books.models import Book, Category
-from likes.models import LikeReview
-from reviews.models import Review
+from likes.models import Like
 
 # Likes test case
 class TestLikeReview(TestCase):
@@ -25,19 +24,13 @@ class TestLikeReview(TestCase):
             title='Test Title'
         )
 
-        cls.review = Review.objects.create(
+        cls.like = Like.objects.create(
             user=cls.user,
-            book=cls.book,
-            content='first review'
-        )
-
-        cls.like = LikeReview.objects.create(
-            user=cls.user,
-            review=cls.review
+            book=cls.book
         )
 
     def test_like_post(self):
-        self.assertEqual(LikeReview.objects.count(), 1)
+        self.assertEqual(Like.objects.count(), 1)
         self.assertEqual(self.like.user, self.user)
         self.assertEqual(self.like.review, self.review)
         self.assertEqual(str(self.like), f'{self.user.username} likes')

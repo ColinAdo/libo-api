@@ -1,14 +1,14 @@
 from django.contrib import admin
 
-from .models import LikeReview
+from .models import Like
 
 # Like reviews admin
-class LikeReviewAdmin(admin.ModelAdmin):
+class LikeAdmin(admin.ModelAdmin):
     list_display = [
         'user',
-        'review',
+        'book',
         'date',
     ]
 
 
-admin.site.register(LikeReview, LikeReviewAdmin)
+admin.site.register(Like, LikeAdmin)
