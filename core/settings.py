@@ -50,8 +50,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'books.apps.BooksConfig',
     'progresses.apps.ProgressesConfig',
-    'favourites.apps.FavouritesConfig',
-    'reviews.apps.ReviewsConfig',
+    'bookmark.apps.BookmarkConfig',
     'likes.apps.LikesConfig',
 ]
 
