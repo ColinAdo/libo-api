@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 from progresses.api.serializers import ProgressSerializer
 from books.models import Book
+from likes.api.serializer import LikeSerializer
 
 # Book User serializer
 class BookUserSerializer(serializers.ModelSerializer):
@@ -17,7 +18,7 @@ class BookSerializer(serializers.ModelSerializer):
     progress = ProgressSerializer(many=True, read_only=True)
     progress_count = serializers.SerializerMethodField()
 
-    likes = BookUserSerializer(many=True, read_only=True)
+    likes = LikeSerializer(many=True, read_only=True)
     likes_count = serializers.SerializerMethodField()
 
     reviews = ProgressSerializer(many=True, read_only=True)
@@ -57,7 +58,7 @@ class BookSerializer(serializers.ModelSerializer):
         return count
 
     def get_likes_count(self, obj):
-        count = len(obj.likes.all())
+        count = len(obj.booklikes.all())
         return count
 
     def get_reviews_count(self, obj):
