@@ -4,10 +4,6 @@ from django.utils import timezone
 
 from datetime import timedelta
 
-# Book directory path
-# def book_dir_path(instance, filename):
-#     return 'book/{0}/{1}'.format(instance.author, filename)
-
 # category model
 class Category(models.Model):
     title = models.CharField(max_length=200)
