@@ -3,8 +3,18 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 from progresses.api.serializers import ProgressSerializer
-from books.models import Book
+from books.models import Book, Category
 from likes.api.serializer import LikeSerializer
+
+class CategorySerializer(serializers.ModelSerializer):
+    book_count = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+    def get_book_count(self, obj):
+        return obj.books.count() 
 
 # Book User serializer
 class BookUserSerializer(serializers.ModelSerializer):
