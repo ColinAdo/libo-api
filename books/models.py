@@ -17,12 +17,9 @@ class Book(models.Model):
     author = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     readers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='readers', blank=True)
-    # cover_image = models.ImageField(upload_to=book_dir_path, blank=True)
-    # pdf_file = models.FileField(upload_to=book_dir_path, blank=True)
-    cover_image = models.ImageField(blank=True)
-    pdf_file = models.FileField(blank=True)
-    description = models.TextField()
-    text_content = models.TextField(blank=True, null=True)
+    cover_image = models.CharField(max_length=200, blank=True, null=True)
+    pdf_file = models.CharField(max_length=200, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     date_posted = models.DateTimeField(auto_now_add=True)
 
     def is_new(self, threshold_days=7):
