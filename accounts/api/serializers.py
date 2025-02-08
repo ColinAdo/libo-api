@@ -7,8 +7,12 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = [
+            'id',
             'email',
             'username',
-            'profile_picture',
         ]
 
+class CustomUserSerializer(UserSerializer):
+    class Meta(UserSerializer.Meta):
+        model = get_user_model()
+        fields = UserSerializer.Meta.fields + ["is_staff"]
