@@ -126,6 +126,10 @@ DJOSER = {
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
     'TOKEN_MODEL': None,
     'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': os.getenv('REDIRECT_URIS').split(','),
+    'SERIALIZERS': {
+        'user': 'accounts.api.serializers.CustomUserSerializer',  
+        'current_user': 'accounts.api.serializers.CustomUserSerializer',  
+    },
 }
 
 # Celery settings in outside docker
