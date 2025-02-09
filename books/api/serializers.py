@@ -64,7 +64,7 @@ class BookSerializer(serializers.ModelSerializer):
         return count
 
     def get_likes_count(self, obj):
-        count = len(obj.booklikes.all())
+        count = len(obj.likes.all())
         return count
 
     def get_bookmarks_count(self, obj):
