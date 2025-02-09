@@ -5,6 +5,7 @@ from rest_framework import serializers
 from progresses.api.serializers import ProgressSerializer
 from books.models import Book, Category
 from likes.api.serializer import LikeSerializer
+from bookmark.api.serializers import BookmarkSerializer
 
 class CategorySerializer(serializers.ModelSerializer):
     book_count = serializers.SerializerMethodField()
@@ -31,13 +32,11 @@ class BookSerializer(serializers.ModelSerializer):
     likes = LikeSerializer(many=True, read_only=True)
     likes_count = serializers.SerializerMethodField()
 
-    reviews = ProgressSerializer(many=True, read_only=True)
-    reviews_count = serializers.SerializerMethodField()
+    bookmarks = BookmarkSerializer(many=True, read_only=True)
+    bookmarks_count = serializers.SerializerMethodField()
 
     readers = BookUserSerializer(many=True, read_only=True)
     readers_count = serializers.SerializerMethodField()
-
-    description = serializers.SerializerMethodField()
 
     class Meta:
         model = Book
@@ -54,14 +53,11 @@ class BookSerializer(serializers.ModelSerializer):
             'readers_count',
             'progress',
             'progress_count',
-            'reviews',
-            'reviews_count',
+            'bookmarks',
+            'bookmarks_count',
             'readers_count',
-            'description',
-            'text_content',
             'date_posted'
         )
-        read_only_fields = ['text_content']
     
     def get_progress_count(self, obj):
         count = len(obj.progress.all())
@@ -71,15 +67,10 @@ class BookSerializer(serializers.ModelSerializer):
         count = len(obj.booklikes.all())
         return count
 
-    def get_reviews_count(self, obj):
-        count = len(obj.reviews.all())
+    def get_bookmarks_count(self, obj):
+        count = len(obj.bookmarks.all())
         return count
 
     def get_readers_count(self, obj):
         count = len(obj.readers.all())
         return count
-
-    def get_description(self, obj):
-        if len(obj.description) < 80:
-            return obj.description
-        return f'{obj.description[:80]}...'
