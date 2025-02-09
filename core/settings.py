@@ -109,6 +109,14 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [],  # No authentication required
+
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.AllowAny',  # Allow all requests
+#     ]
+# }
+
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Libo API',
     'DESCRIPTION': 'Libo API is library that helps you to read and chat with pdf, the pdf will be sent to users email.',
