@@ -4,6 +4,7 @@ import logging
 from asgiref.sync import sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer # type: ignore
 from books.models import Book, Category
+from likes.models import Like
 
 # Account consumer
 class BookConsumer(AsyncWebsocketConsumer):
@@ -59,8 +60,19 @@ class BookConsumer(AsyncWebsocketConsumer):
                 }
             )
             await self.save_book(category, author, title, cover_image, pdf_file, description)
+        
+        elif operation == 'like_book':
+            id = data['data']['id']
+            await self.channel_layer.group_send(
+                self.username,
+                {
+                    'type': 'like_book',
+                    'id': id,
+                }
+            )
+            await self.save_like(id)
        
-    # Send the created account to WebSocket
+    # Send the created book to WebSocket
     async def create_book(self, event):
         category = event['category']
         author = event['author']
@@ -81,7 +93,14 @@ class BookConsumer(AsyncWebsocketConsumer):
             'description': description,
         }))
 
-     
+    # Send back the liked book to frontend
+    async def like_book(self, event):
+        id = event['id']
+
+        await self.send(text_data=json.dumps({
+            'id': id,
+        }))
+
 
     @sync_to_async
     def save_book(self, category, author, title, cover_image, pdf_file, description):
@@ -89,3 +108,16 @@ class BookConsumer(AsyncWebsocketConsumer):
 
         cat = Category.objects.get(title=category)
         Book.objects.create(category=cat, author=author, title=title, cover_image=cover_image, pdf_file=pdf_file, description=description)
+
+    @sync_to_async
+    def save_like(self, id):
+        user = self.scope.get('user')
+
+        isLiked = Like.objects.filter(user=user, book=id).exists()
+        book = Book.objects.get(id=id)
+
+        print("Is liked", isLiked)
+        if isLiked:
+            Like.objects.get(user=user, book=id).delete()
+        else:
+            Like.objects.create(user=user, book=book)
