@@ -8,7 +8,7 @@ from books.api.serializers import BookSerializer, CategorySerializer
 
 # Book viewset
 class BookViewset(viewsets.ModelViewSet):
-    queryset = Book.objects.all()
+    queryset = Book.objects.all().order_by('-date_posted')
     serializer_class = BookSerializer
     permission_classes = [permissions.IsAuthenticated]
 
