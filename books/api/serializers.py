@@ -50,6 +50,7 @@ class BookSerializer(serializers.ModelSerializer):
             'likes',
             'likes_count',
             'readers',
+            'description',
             'readers_count',
             'progress',
             'progress_count',
