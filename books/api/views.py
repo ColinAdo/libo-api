@@ -10,7 +10,7 @@ from books.api.serializers import BookSerializer, CategorySerializer
 class BookViewset(viewsets.ModelViewSet):
     queryset = Book.objects.all().order_by('-date_posted')
     serializer_class = BookSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
 class CategoryView(APIView):
     permission_classes = [permissions.IsAuthenticated]
