@@ -5,6 +5,7 @@ from asgiref.sync import sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer # type: ignore
 from books.models import Book, Category
 from likes.models import Like
+from bookmark.models import Bookmark
 
 # Account consumer
 class BookConsumer(AsyncWebsocketConsumer):
@@ -71,6 +72,17 @@ class BookConsumer(AsyncWebsocketConsumer):
                 }
             )
             await self.save_like(id)
+
+        elif operation == 'bookmark_book':
+            id = data['data']['id']
+            await self.channel_layer.group_send(
+                self.username,
+                {
+                    'type': 'bookmark_book',
+                    'id': id,
+                }
+            )
+            await self.save_bookmark(id)
        
     # Send the created book to WebSocket
     async def create_book(self, event):
@@ -101,6 +113,14 @@ class BookConsumer(AsyncWebsocketConsumer):
             'id': id,
         }))
 
+    # Send back the bookmarked book to frontend
+    async def bookmark_book(self, event):
+        id = event['id']
+
+        await self.send(text_data=json.dumps({
+            'id': id,
+        }))
+
 
     @sync_to_async
     def save_book(self, category, author, title, cover_image, pdf_file, description):
@@ -116,8 +136,20 @@ class BookConsumer(AsyncWebsocketConsumer):
         isLiked = Like.objects.filter(user=user, book=id).exists()
         book = Book.objects.get(id=id)
 
-        print("Is liked", isLiked)
         if isLiked:
             Like.objects.get(user=user, book=id).delete()
         else:
             Like.objects.create(user=user, book=book)
+
+    @sync_to_async
+    def save_bookmark(self, id):
+        user = self.scope.get('user')
+
+        isBookmarked = Bookmark.objects.filter(user=user, book=id).exists()
+        book = Book.objects.get(id=id)
+
+        print("Is liked", isBookmarked)
+        if isBookmarked:
+            Bookmark.objects.get(user=user, book=id).delete()
+        else:
+            Bookmark.objects.create(user=user, book=book)
