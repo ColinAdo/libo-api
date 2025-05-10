@@ -6,6 +6,17 @@ from rest_framework import permissions, status
 from books.models import Book, Category
 from books.api.serializers import BookSerializer, CategorySerializer
 
+# Bookmarked Books by current logged in user view
+class BookmarkedBooksView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        bookmarked_books = Book.objects.filter(bookmarks__user=user).distinct()
+        serializer = BookSerializer(bookmarked_books, many=True)
+        return Response(serializer.data)
+
+
 # Liked Books by current logged in user view
 class LikedBooksView(APIView):
     permission_classes = [permissions.IsAuthenticated]
