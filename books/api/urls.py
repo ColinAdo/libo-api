@@ -6,7 +6,8 @@ from books.api.views import (
     BookViewset, 
     CategoryView, 
     LikedBooksView,
-    BookCategoryView
+    BookCategoryView,
+    BookmarkedBooksView
 )
 
 routes = DefaultRouter()
@@ -14,6 +15,7 @@ routes = DefaultRouter()
 routes.register(r'books', BookViewset, basename='books')
 urlpatterns = [
     path('liked/books/', LikedBooksView.as_view(), name='likes'),
+    path('bookmarked/books/', BookmarkedBooksView.as_view(), name='bookmarks'),
     path('categories/', CategoryView.as_view(), name='categories'),
     path('books/category/<int:id>/', BookCategoryView.as_view(), name='book-category'),
 ]
