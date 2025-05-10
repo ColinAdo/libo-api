@@ -6,6 +6,16 @@ from rest_framework import permissions, status
 from books.models import Book, Category
 from books.api.serializers import BookSerializer, CategorySerializer
 
+# Liked Books by current logged in user view
+class LikedBooksView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        liked_books = Book.objects.filter(likes__user=user).distinct()
+        serializer = BookSerializer(liked_books, many=True)
+        return Response(serializer.data)
+
 
 # Book viewset
 class BookCategoryView(APIView):
