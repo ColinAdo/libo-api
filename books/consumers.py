@@ -121,6 +121,16 @@ class BookConsumer(AsyncWebsocketConsumer):
             'id': id,
         }))
 
+    async def chatpdf_message(self, event):
+        message = event['message']
+        source_id = event['sourceId']
+
+        await self.send(text_data=json.dumps({
+            'type': 'chatpdf_response',
+            'message': message,
+            'sourceId': source_id,
+        }))
+
 
     @sync_to_async
     def save_book(self, category, author, title, cover_image, pdf_file, description):
