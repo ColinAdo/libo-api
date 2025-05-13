@@ -227,6 +227,7 @@ SOCIAL_AUTH_GITHUB_EXTRA_DATA = [
 
 # Openapi key
 OPENAI_API_KEY=os.getenv('OPENAI_API_KEY')
+CHATPDF_API_KEY=os.getenv('CHATPDF_API_KEY')
 
 
 # Password validation
