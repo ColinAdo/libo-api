@@ -6,8 +6,10 @@ from books.api.views import (
     BookViewset, 
     CategoryView, 
     LikedBooksView,
+    AskChatPDFView,
     BookCategoryView,
-    BookmarkedBooksView
+    BookmarkedBooksView,
+    AddPDFToChatPDFView
 )
 
 routes = DefaultRouter()
@@ -18,5 +20,7 @@ urlpatterns = [
     path('bookmarked/books/', BookmarkedBooksView.as_view(), name='bookmarks'),
     path('categories/', CategoryView.as_view(), name='categories'),
     path('books/category/<int:id>/', BookCategoryView.as_view(), name='book-category'),
+    path('chatpdf/ask/', AskChatPDFView.as_view(), name='chatpdf-ask'),
+    path('chatpdf/add/', AddPDFToChatPDFView.as_view(), name='chatpdf-add'),
 ]
 urlpatterns += routes.urls
